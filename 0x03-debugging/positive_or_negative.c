@@ -1,30 +1,15 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+
 /**
- * main - Entry point
- * Description: 'number checker'
- * Return: always 0
+ * positive_or_negative - prints if an integer is positive or negative
+ * @i: The integer to be checked
  */
-
-int main(void)
+void positive_or_negative(int i)
 {
-    int n;
-
-    srand(time(0));
-    n = rand() - RAND_MAX / 2;
-    if (n > 0)
-    {
-        printf("%d is positive\n", n);
-    }
-    else if (n == 0)
-    {
-        printf("%d is zero\n", n);
-    }
+    if (i == 0)
+        printf("%d is zero\n", i);
+    else if (i > 0)
+        printf("%d is positive\n", i);
     else
-    {
-        printf("%d is negative\n", n);
-    }
-    return (0);
+        printf("%d is negative\n", i);
 }
