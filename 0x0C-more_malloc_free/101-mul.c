@@ -4,36 +4,58 @@
 
 #define ERR_MSG "Error"
 
-int check_digit(char *s)
+/**
+ * check_digit - checks if a string contains only digits
+ * @s: string to be evaluated
+ *
+ * Return: 0 if a non-digit character is found, 1 otherwise
+ */
+int check_digit(char *string)
 {
-	int i = 0;
+	int index = 0;
 
-	while (s[i])
+	while (string[index])
 	{
-		if (s[i] < '0' || s[i] > '9')
+		if (string[index] < '0' || string[index] > '9')
 			return (0);
-		i++;
+		index++;
 	}
 	return (1);
 }
 
-int get_string_length(char *s)
+/**
+ * get_str_length - calculates the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
+ */
+int get_str_length(char *string)
 {
-	int i = 0;
+	int index = 0;
 
-	while (s[i] != '\0')
+	while (string[index] != '\0')
 	{
-		i++;
+		index++;
 	}
-	return (i);
+	return (index);
 }
 
+/**
+ * handle_errors - handles errors for the main function
+ */
 void handle_errors(void)
 {
 	printf("Error\n");
 	exit(98);
 }
 
+/**
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ *
+ * Return: always 0 (Success)
+ */
 int main(int argc, char *argv[])
 {
 	char *str1, *str2;
@@ -42,8 +64,8 @@ int main(int argc, char *argv[])
 	str1 = argv[1], str2 = argv[2];
 	if (argc != 3 || !check_digit(str1) || !check_digit(str2))
 		handle_errors();
-	len1 = get_string_length(str1);
-	len2 = get_string_length(str2);
+	len1 = get_str_length(str1);
+	len2 = get_str_length(str2);
 	total_len = len1 + len2 + 1;
 	result = malloc(sizeof(int) * total_len);
 	if (!result)
@@ -54,7 +76,7 @@ int main(int argc, char *argv[])
 	{
 		digit1 = str1[len1] - '0';
 		carry = 0;
-		for (len2 = get_string_length(str2) - 1; len2 >= 0; len2--)
+		for (len2 = get_str_length(str2) - 1; len2 >= 0; len2--)
 		{
 			digit2 = str2[len2] - '0';
 			carry += result[len1 + len2 + 1] + (digit1 * digit2);
