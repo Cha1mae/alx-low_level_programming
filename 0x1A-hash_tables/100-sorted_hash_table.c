@@ -1,5 +1,4 @@
 #include "hash_tables.h"
-
 /**
  * shash_table_create - Creates a sorted ht
  * @size: array size
@@ -22,14 +21,11 @@ shash_table_t *shash_table_create(unsigned long int size)
 	ht->stail = NULL;
 	return (ht);
 }
-
 /**
- * shash_table_set - Adds an elemnt to sorted ht
- * @ht: The sorted ht
- * @key: The key to be added
- * @value: The value to be added
+ * shash_table_create - Creates a sorted ht
+ * @size: array size
  *
- * Return: 1 on success, 0 on failure
+ * Return: pointer to the newly created ht
  */
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
@@ -43,15 +39,15 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	tmpo = ht->array[idx];
 
 	while (tmpo != NULL)
-    {
-	    if (strcmp(tmpo->key, key) == 0)
-	    {
-		    free(tmpo->value);
-		    tmpo->value = strdup(value);
-		    return (1);
-	    }
-	    tmpo = tmpo->next;
-    }
+	{
+		if (strcmp(tmpo->key, key) == 0)
+		{
+			free(tmpo->value);
+			tmpo->value = strdup(value);
+			return (1);
+		}
+		tmpo = tmpo->next;
+	}
 
 	cool_node = malloc(sizeof(shash_node_t));
 	if (cool_node == NULL) return 0;
@@ -80,7 +76,9 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		cool_node->snext = NULL;
 		ht->shead = cool_node;
 		ht->stail = cool_node;
-	} else {
+	}
+	else
+	{
 		tmpo = ht->shead;
 		while (tmpo)
 		{
@@ -150,7 +148,7 @@ void shash_table_print(const shash_table_t *ht)
 
 	printf("{");
 	node = ht->shead;
-	while (node != NULL) 
+	while (node != NULL)
 	{
 		if (comma_flag == 1)
 			printf(", ");
@@ -198,7 +196,7 @@ void shash_table_delete(shash_table_t *ht)
 	if (ht == NULL)
 		return;
 
-	for (xy = 0; xy < ht->size; xy++) 
+	for (xy = 0; xy < ht->size; xy++)
 	{
 		node = ht->array[xy];
 		while (node != NULL)
