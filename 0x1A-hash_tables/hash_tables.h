@@ -42,4 +42,8 @@ char *hash_table_get(const hash_table_t *ht, const char *key);
 void hash_table_print(const hash_table_t *ht);
 void hash_table_delete(hash_table_t *ht);
 
+/*task 3*/
+int insert_node_at_index(hash_table_t *ht, hash_node_t *cool_node,
+						 unsigned long int idx, const char *key);
+void free_node(hash_node_t *node);
 #endif
