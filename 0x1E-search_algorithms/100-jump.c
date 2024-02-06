@@ -1,38 +1,44 @@
 #include "search_algos.h"
+#include <math.h>
 
 /**
- * binary_search - Searches for a value in a sorted arr
- * using the BSA
- * @array: Pointer to the first elmnt of the arr to searh
- * @size: Number of elmnts in the arr
+ * jump_search - Searches for a value in an arr of
+ * ints using the Jump search algorithm
+ *
+ * @array: Pointer to the first elmnt of the arr to search
+ * @size: Size of the arr
  * @value: Value to search for
  *
- * Return: If value is not present or array is NULL, -1.
- *         Otherwise, the index where the value is located.
- *
- * Description: Prints the subarray being searched after each change
+ * Return: Index of the value, or -1 if not found
  */
-int binary_search(int *array, size_t size, int value)
+int jump_search(int *array, size_t size, int value)
 {
-	size_t chae, L, R;
+	int chae, L, S, P;
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (-1);
 
-	for (L = 0, R = size - 1; R >= L;)
-	{
-		printf("Searching in array: ");
-		for (chae = L; chae < R; chae++)
-			printf("%d, ", array[chae]);
-		printf("%d\n", array[chae]);
+	S = (int)sqrt((double)size);
+	L = 0;
+	P = chae = 0;
 
-		chae = L + (R - L) / 2;
+	do {
+		printf("Value checked array[%d] = [%d]\n", chae, array[chae]);
+
 		if (array[chae] == value)
 			return (chae);
-		if (array[chae] > value)
-			R = chae - 1;
-		else
-			L = chae + 1;
+		L++;
+		P = chae;
+		chae = L * S;
+	} while (chae < (int)size && array[chae] < value);
+
+	printf("Value found between indexes [%d] and [%d]\n", P, chae);
+
+	for (; P <= chae && P < (int)size; P++)
+	{
+		printf("Value checked array[%d] = [%d]\n", P, array[P]);
+		if (array[P] == value)
+			return (P);
 	}
 
 	return (-1);
