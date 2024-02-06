@@ -30,7 +30,7 @@ typedef struct listint_s
  * @express: Pointer to the next node in the express lane
  *
  * Description: singly linked list node structure with an express lane
- * for Holberton project
+ * for Alx project
  */
 typedef struct skiplist_s
 {
@@ -41,7 +41,6 @@ typedef struct skiplist_s
 } skiplist_t;
 
 int linear_search(int *array, size_t size, int value);
-int binary_search(int *array, size_t size, int value);
 int jump_search(int *array, size_t size, int value);
 int interpolation_search(int *array, size_t size, int value);
 int exponential_search(int *array, size_t size, int value);
